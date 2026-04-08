@@ -660,8 +660,39 @@
       .bk-info { grid-template-columns: repeat(3,1fr); }
       .foot-inner { grid-template-columns: 1fr 1fr; }
     }
+    /* ─── BURGER ────────────────────────────────── */
+    .nav-burger {
+      display: none; flex-direction: column; justify-content: center; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 8px; z-index: 1001;
+    }
+    .nav-burger span {
+      display: block; width: 24px; height: 2px; background: #fff;
+      border-radius: 2px; transition: transform .3s, opacity .3s;
+    }
+    #nav.scrolled .nav-burger span { background: var(--dark); }
+    .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
     @media (max-width: 768px) {
-      .nav-links { display: none; }
+      .nav-burger { display: flex; }
+      .nav-links {
+        display: flex; flex-direction: column; align-items: center; gap: 0;
+        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(26,18,9,.97); backdrop-filter: blur(12px);
+        justify-content: center;
+        opacity: 0; pointer-events: none; transition: opacity .3s;
+        z-index: 1000;
+      }
+      .nav-links.open { opacity: 1; pointer-events: all; }
+      .nav-links li { width: 100%; text-align: center; }
+      .nav-links a {
+        display: block; padding: 18px 24px;
+        font-size: 1.1rem; color: rgba(255,255,255,.85) !important;
+        letter-spacing: .1em;
+      }
+      .nav-links a:hover { color: var(--gold) !important; }
+      .nav-cta { background: var(--gold) !important; margin: 8px 24px; border-radius: 2px; }
       #nav { padding: 0 22px; }
       .stats-bar { flex-wrap: wrap; }
       .stat { flex: 1 1 45%; border-right: none; border-bottom: 1px solid rgba(255,255,255,.07); padding: 18px; }
@@ -683,7 +714,10 @@
 <!-- NAV -->
 <nav id="nav">
   <a href="#" class="nav-logo">Gîte de Villandraut</a>
-  <ul class="nav-links">
+  <button class="nav-burger" id="navBurger" aria-label="Menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
     <li><a href="#about" data-i18n="nav-accommodation">Le Logement</a></li>
     <li><a href="#amenities" data-i18n="nav-amenities">Équipements</a></li>
     <li><a href="#surround" data-i18n="nav-surroundings">Les Environs</a></li>
@@ -1266,6 +1300,23 @@
 </div>
 
 <script>
+  /* ── BURGER MENU ── */
+  function toggleMenu() {
+    const burger = document.getElementById('navBurger');
+    const links  = document.getElementById('navLinks');
+    burger.classList.toggle('open');
+    links.classList.toggle('open');
+    document.body.style.overflow = links.classList.contains('open') ? 'hidden' : '';
+  }
+  // Fermer le menu au clic sur un lien
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('navBurger').classList.remove('open');
+      document.getElementById('navLinks').classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
   /* ── PARALLAX HERO ── */
   const heroBg = document.getElementById('heroBg');
   const nav    = document.getElementById('nav');
