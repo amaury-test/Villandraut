@@ -33,7 +33,7 @@
   <meta property="og:site_name" content="Gîte de Villandraut">
   <meta property="og:title" content="Gîte de Villandraut — Grande maison de charme | Sauternes, Sud Gironde">
   <meta property="og:description" content="Grande maison calme, parc clos 5 000 m², au cœur du Sauternais. Canoë sur le Ciron, équitation 100 m, châteaux médiévaux, vignobles Sauternes. Découverte exclusive d'un grand cru classé. Réservation : 06 18 00 06 28.">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=85">
+  <meta property="og:image" content="https://amaury-test.github.io/Villandraut/villandraut/Img/optimized/hero.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Gîte de Villandraut - Grande maison de vacances en Gironde, parc 5000 m²">
@@ -45,7 +45,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Gîte de Villandraut — Grande maison | Sauternes, Gironde">
   <meta name="twitter:description" content="Grande maison calme, parc clos 5 000 m², cœur du vignoble girondin. Canoë Ciron, équitation, châteaux médiévaux, visite exclusive grand cru Sauternes. Sud Bordeaux.">
-  <meta name="twitter:image" content="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=85">
+  <meta name="twitter:image" content="https://amaury-test.github.io/Villandraut/villandraut/Img/optimized/hero.jpg">
 
   <!-- ═══════════════════════════════════════════════════
        SEO — DONNÉES STRUCTURÉES JSON-LD (schema.org)
@@ -64,9 +64,9 @@
         "telephone": "+33618000628",
         "email": "denazelle.chantal@orange.fr",
         "image": [
-          "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=1200&q=85",
-          "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1200&q=85"
+          "https://amaury-test.github.io/Villandraut/villandraut/Img/optimized/hero.jpg",
+          "https://amaury-test.github.io/Villandraut/villandraut/Img/optimized/gallery-1.jpg",
+          "https://amaury-test.github.io/Villandraut/villandraut/Img/optimized/about-main.jpg"
         ],
         "priceRange": "€€",
         "currenciesAccepted": "EUR",
@@ -262,11 +262,13 @@
 
     /* ─── NAVIGATION ───────────────────────────────── */
     #nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
       height: var(--nav-h);
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 56px;
       transition: background .4s, box-shadow .4s;
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
     }
     #nav.scrolled {
       background: rgba(250,247,242,.96);
@@ -312,7 +314,6 @@
     .hero-bg {
       position: absolute; inset: -25%;
       background: url('hero.jpg') center/cover no-repeat;
-      will-change: transform;
     }
     .hero-vignette {
       position: absolute; inset: 0;
@@ -781,7 +782,7 @@
     /* ─── BURGER ────────────────────────────────── */
     .nav-burger {
       display: none; flex-direction: column; justify-content: center; gap: 5px;
-      background: none; border: none; cursor: pointer; padding: 8px; z-index: 1001;
+      background: none; border: none; cursor: pointer; padding: 8px; z-index: 9999;
     }
     .nav-burger span {
       display: block; width: 24px; height: 2px; background: #fff;
@@ -797,10 +798,12 @@
       .nav-links {
         display: flex; flex-direction: column; align-items: center; gap: 0;
         position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-        background: rgba(26,18,9,.97); backdrop-filter: blur(12px);
+        background: rgba(20,16,10,.97);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
         justify-content: center;
-        opacity: 0; pointer-events: none; transition: opacity .3s;
-        z-index: 1000;
+        opacity: 0; pointer-events: none; transition: opacity .35s;
+        z-index: 9998;
       }
       .nav-links.open { opacity: 1; pointer-events: all; }
       .nav-links li { width: 100%; text-align: center; }
