@@ -267,8 +267,6 @@
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 56px;
       transition: background .4s, box-shadow .4s;
-      transform: translateZ(0);
-      -webkit-transform: translateZ(0);
     }
     #nav.scrolled {
       background: rgba(250,247,242,.96);
@@ -795,23 +793,54 @@
 
     @media (max-width: 768px) {
       .nav-burger { display: flex; }
+
+      /* Overlay plein écran — positionné sur body, pas sur le nav */
       .nav-links {
-        display: flex; flex-direction: column; align-items: center; gap: 0;
-        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-        background: #161008;
-        justify-content: center;
-        opacity: 0; pointer-events: none; transition: opacity .35s;
+        position: fixed;
+        top: 0; left: 0;
+        width: 100vw; height: 100vh;
+        background: #14100c;
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        gap: 0;
+        opacity: 0; pointer-events: none;
+        transition: opacity .3s ease;
         z-index: 9998;
+        padding: 0;
+        list-style: none;
       }
       .nav-links.open { opacity: 1; pointer-events: all; }
-      .nav-links li { width: 100%; text-align: center; }
+
+      /* Items nav */
+      .nav-links > li { width: 100%; text-align: center; }
       .nav-links a {
-        display: block; padding: 18px 24px;
-        font-size: 1.1rem; color: rgba(255,255,255,.85) !important;
-        letter-spacing: .1em;
+        display: block; padding: 15px 32px;
+        font-family: 'Cormorant Garamond', serif; font-style: italic;
+        font-size: 1.6rem; font-weight: 300;
+        color: rgba(255,255,255,.82) !important;
+        letter-spacing: .04em; text-decoration: none;
       }
-      .nav-links a:hover { color: var(--gold) !important; }
-      .nav-cta { background: var(--gold) !important; margin: 8px 24px; border-radius: 50px; }
+      .nav-links a:active { color: var(--gold) !important; }
+
+      /* Bouton Réserver */
+      .nav-links .nav-cta {
+        display: inline-block !important;
+        background: var(--gold) !important;
+        color: #fff !important;
+        font-family: 'Jost', sans-serif !important;
+        font-style: normal !important;
+        font-size: .8rem !important;
+        letter-spacing: .16em !important;
+        padding: 15px 48px !important;
+        border-radius: 50px !important;
+        margin: 10px 0 !important;
+      }
+
+      /* Lang toggle en bas de l'écran */
+      .nav-links > li:last-child {
+        position: fixed; bottom: 44px; left: 0; right: 0;
+        text-align: center;
+      }
       #nav { padding: 0 22px; }
       .stats-bar { flex-wrap: wrap; }
       .stat { flex: 1 1 45%; border-right: none; border-bottom: 1px solid rgba(255,255,255,.07); padding: 18px; }
